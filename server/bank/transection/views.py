@@ -552,7 +552,8 @@ class CraditCardProcess(APIView):
                     "exp_date":i.exp_date,
                     "card_stap_type":i.card_stap_type,
                     "total_aspect_value":i.total_aspect_value,
-                    "used_value":i.used_value
+                    "used_value":i.used_value,
+                    "stage":i.stage
                 })
         return Response({"card_items_info":items}, status=status.HTTP_200_OK)
 
