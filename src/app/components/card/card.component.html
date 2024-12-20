@@ -31,8 +31,6 @@
             alt=""
             *ngIf="isPlati"
             fill="white"
-          
-           
             d="M0.9,251.4c0,0-2-40.7,30.4-104.7
        C63.8,82.5,112.7,32.7,194,10s159.6,0.5,193.3,25.7c33.7,25.2,63.1,50.9,76.3,107c13.2,56.1,1.7,96,1.7,96s-6.7,21.4-11.5,29.7
        c-4.7,8.2-9,16-9,16s-8,4,3.7,19.5c11.7,15.5,56.6,85.3,56.6,85.3l63.1,87c0,0,40.2,55.6,88,84c47.9,28.4,71.3,24.4,71.3,24.4h25.9
@@ -44,7 +42,6 @@
           />
 
           <path
-         
             alt=""
             *ngIf="!isPlati"
             id="Path_1_00000010993171036275141670000014577503859070789547_"
@@ -73,14 +70,14 @@
     </div>
   </div>
   <div class="number">
-    {{ "0109 8234 9872 9872" }}
+    {{ card_number }}
   </div>
 
-  <div class="pin">9900</div>
+  <div class="pin">{{ card_cvv }}</div>
 
   <div class="username-date">
-    <div class="username">USERS NAME</div>
-    <div class="date">05/19</div>
-    <div class="typename">VISA</div>
+    <div class="username">{{ username }}</div>
+    <div class="date">{{ card_exp }}</div>
+    <div class="typename">{{ card_type }}</div>
   </div>
 </div>

@@ -2,134 +2,192 @@
   <div class="card-context">
     <div class="header">Credit-Card</div>
     <div class="card-container">
+      <div class="card-box">
+        <div class="card-item card-context-item">
+          <app-card
+            [isSilver]="true"
+            [username]="username ?? 'Not Available'"
+            [card_cvv]="
+              silverCard?.stage == 'request_to_ACCEPT'
+                ? silverCard?.cvv ?? 'N/A'
+                : 'Panding...'
+            "
+            [card_exp]="
+              silverCard?.stage == 'request_to_ACCEPT'
+                ? silverCard?.exp_date ?? 'N/A'
+                : 'Panding...'
+            "
+            [card_number]="
+              silverCard?.stage == 'request_to_ACCEPT'
+                ? silverCard?.card_number ?? 'N/A'
+                : 'Panding...'
+            "
+            [card_type]="
+              silverCard?.stage == 'request_to_ACCEPT'
+                ? silverCard?.card_type ?? 'N/A'
+                : 'Panding...'
+            "
+          />
+        </div>
 
-
-
-
-
-      <div class="card-box" >
-            <div class="card-item card-context-item">
-                <app-card   [isSilver]="true" />
+        <div class="card-item text-context-item">
+          <div class="info-header">Silver Card</div>
+          <div class="info-des">
+            <div class="text">
+              The Silver Card offers basic benefits and features, making it
+              ideal for everyday purchases. With lower annual fees, this card
+              provides access to customer support and a standard rewards program
+              that allows you to earn points on every dollar spent.
             </div>
-            <div class="card-item text-context-item">
-                <div class="info-header" >
-                    Silver Card
-                </div>
-                <div class="info-des" >
-                    <div class="text" >
-                        The Silver Card offers basic benefits and features, making it ideal for everyday purchases. With lower annual fees, this card provides access to customer support and a standard rewards program that allows you to earn points on every dollar spent.
-
-                    </div>
-                    <div class="card-info" >
-                        <div class="info-item">Card Number: 0109 8234 9872 9872</div>
-                        <div class="info-item">Expiration Date: 05/19</div>
-                        <div class="info-item">CVV/CVC: 9900</div>
-                        <div class="info-item">Cardholder Name: USERS NAME</div>
-                        <div class="info-item">Card Type: VISA</div>
-                    </div>
-                </div>
-                <div class="button-box" >
-                        <div class="button" role="button">
-                            Request
-                        </div>
-                </div>
+            <div class="card-info">
+              <div class="info-item">
+                Card Number: {{  silverCard?.stage == 'request_to_ACCEPT'
+                ? silverCard?.card_number ?? 'N/A'
+                : 'Panding...' }}
+              </div>
+              <div class="info-item">
+                Expiration Date: {{ silverCard?.stage == 'request_to_ACCEPT'
+                ? silverCard?.exp_date ?? 'N/A'
+                : 'Panding...' }}
+              </div>
+              <div class="info-item">
+                CVV/CVC: {{ silverCard?.stage == 'request_to_ACCEPT'
+                ? silverCard?.cvv ?? 'N/A'
+                : 'Panding...' }}
+              </div>
+              <div class="info-item">
+                Cardholder Name: {{ !username ? "USERS NAME":username }}
+              </div>
+              <div class="info-item">Card Type: {{silverCard?.stage == 'request_to_ACCEPT'
+                ? silverCard?.card_type ?? 'N/A'
+                : 'Panding...'}}</div>
             </div>
+          </div>
+          <div class="button-box">
+            <div class="button" role="button" *ngIf="silverCard?.stage == 'request_to_cradit'" >Panding...</div>
+            <div class="button" role="button" *ngIf="!silverCard" >Request</div>
+          </div>
+        </div>
       </div>
 
-
-
-
-
-
-
-
-
-      <div class="card-box" >
-        
+      <div class="card-box">
         <div class="card-item text-context-item">
-            <div class="info-header" >
-                Gold Card
+          <div class="info-header">Gold Card</div>
+          <div class="info-des">
+            <div class="text">
+              The Gold Card enhances your spending power with higher credit
+              limits and additional travel and purchase protections. Enjoy
+              medium annual fees and an enhanced rewards program that offers
+              more points per dollar spent, making it a great choice for those
+              seeking more benefits and features.
             </div>
-            <div class="info-des" >
-                <div class="text" >
-                    The Gold Card enhances your spending power with higher credit limits and additional travel and purchase protections. Enjoy medium annual fees and an enhanced rewards program that offers more points per dollar spent, making it a great choice for those seeking more benefits and features.
-                </div>
-                <div class="card-info" >
-                    <div class="info-item">Card Number: 0109 8234 9872 9872</div>
-                    <div class="info-item">Expiration Date: 05/19</div>
-                    <div class="info-item">CVV/CVC: 9900</div>
-                    <div class="info-item">Cardholder Name: USERS NAME</div>
-                    <div class="info-item">Card Type: VISA</div>
-                </div>
+            <div class="card-info">
+              <div class="info-item">
+                Card Number:
+                {{  goldCard?.stage == 'request_to_ACCEPT'
+                ? goldCard?.card_num ?? 'N/A'
+                : 'Panding...' }}
+              </div>
+              <div class="info-item">
+                Expiration Date: {{ goldCard?.stage == 'request_to_ACCEPT'
+                ? goldCard?.exp_date ?? 'N/A'
+                : 'Panding...' }}
+              </div>
+              <div class="info-item">CVV/CVC: {{ goldCard?.stage == 'request_to_ACCEPT'
+                ? goldCard?.cvv ?? 'N/A'
+                : 'Panding...' }}</div>
+              <div class="info-item">
+                Cardholder Name: {{ !username ? "USERS NAME":username  }}
+              </div>
+              <div class="info-item">Card Type:  {{goldCard?.stage == 'request_to_ACCEPT'
+                ? goldCard?.card_type ?? 'N/A'
+                : 'Panding...'}}</div>
             </div>
-            <div class="button-box" >
-                    <div class="button" role="button">
-                        Request
-                    </div>
-            </div>
+          </div>
+          <div class="button-box">
+            <div class="button" role="button" *ngIf="goldCard?.stage == 'request_to_cradit'" >Panding...</div>
+            <div class="button" role="button" *ngIf="!goldCard" >Request</div>
+          </div>
         </div>
         <div class="card-item card-context-item">
-            <app-card [isGold]="true" />
+          <app-card
+            [isGold]="true"
+            [username]="username ?? 'not available'"
+            [card_cvv]="
+              goldCard?.stage == 'request_to_ACCEPT'
+                ? goldCard?.cvv ?? 'N/A'
+                : 'Panding...'
+            "
+            [card_exp]="
+              goldCard?.stage == 'request_to_ACCEPT'
+                ? goldCard?.exp_date ?? 'N/A'
+                : 'Panding...'
+            "
+            [card_number]="
+              goldCard?.stage == 'request_to_ACCEPT'
+                ? goldCard?.card_num ?? 'N/A'
+                : 'Panding...'
+            "
+            [card_type]="
+              goldCard?.stage == 'request_to_ACCEPT'
+                ? goldCard?.card_type ?? 'N/A'
+                : 'Panding...'
+            "
+          />
         </div>
-  </div>
+      </div>
 
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-  <div class="card-box" >
-    <div class="card-item card-context-item">
-        <app-card [isPlati]="true" />
-    </div>
-    <div class="card-item text-context-item">
-        <div class="info-header" >
-            Platinum Card
+      <div class="card-box">
+        <div class="card-item card-context-item">
+          <app-card
+            [isPlati]="true"
+            [username]="username ?? 'not available'"
+            [card_cvv]="platinumCard?.stage == 'request_to_ACCEPT'
+            ? platinumCard?.cvv ?? 'N/A'
+            : 'Panding...'"
+            [card_exp]="platinumCard?.stage == 'request_to_ACCEPT'
+            ? platinumCard?.exp_date ?? 'N/A'
+            : 'Panding...'"
+            [card_number]="platinumCard?.stage == 'request_to_ACCEPT'
+            ? platinumCard?.card_num ?? 'N/A'
+            : 'Panding...'"
+            [card_type]=" platinumCard?.stage == 'request_to_ACCEPT'
+            ? platinumCard?.card_type ?? 'N/A'
+            : 'Panding...'"
+          />
         </div>
-        <div class="info-des" >
-            <div class="text" >
-                The Platinum Card is our premium offering, featuring the highest credit limits and comprehensive travel and purchase insurance. With higher annual fees, this card provides a premium rewards program with the highest points per dollar spent, along with exclusive access to airport lounges and concierge services.
+        <div class="card-item text-context-item">
+          <div class="info-header">Platinum Card</div>
+          <div class="info-des">
+            <div class="text">
+              The Platinum Card is our premium offering, featuring the highest
+              credit limits and comprehensive travel and purchase insurance.
+              With higher annual fees, this card provides a premium rewards
+              program with the highest points per dollar spent, along with
+              exclusive access to airport lounges and concierge services.
             </div>
-            <div class="card-info" >
-                <div class="info-item">Card Number: 0109 8234 9872 9872</div>
-                <div class="info-item">Expiration Date: 05/19</div>
-                <div class="info-item">CVV/CVC: 9900</div>
-                <div class="info-item">Cardholder Name: USERS NAME</div>
-                <div class="info-item">Card Type: VISA</div>
+            <div class="card-info">
+              <div class="info-item">Card Number: {{  platinumCard?.stage == 'request_to_ACCEPT'
+                ? platinumCard?.card_num ?? 'N/A'
+                : 'Panding...' }}</div>
+              <div class="info-item">Expiration Date: {{ platinumCard?.stage == 'request_to_ACCEPT'
+                ? platinumCard?.exp_date ?? 'N/A'
+                : 'Panding...' }}</div>
+              <div class="info-item">CVV/CVC: {{ platinumCard?.stage == 'request_to_ACCEPT'
+                ? platinumCard?.cvv ?? 'N/A'
+                : 'Panding...' }}</div>
+              <div class="info-item">Cardholder Name:  {{!username ? "USERS NAME":username }} </div>
+              <div class="info-item">Card Type: {{platinumCard?.stage == 'request_to_ACCEPT'
+                ? platinumCard?.card_type ?? 'N/A'
+                : 'Panding...'}}</div>
             </div>
+          </div>
+          <div class="button-box">
+            <div class="button" role="button" *ngIf="platinumCard?.stage == 'request_to_cradit'" >Panding...</div>
+            <div class="button" role="button" *ngIf="!platinumCard" >Request</div>
+          </div>
         </div>
-        <div class="button-box" >
-                <div class="button" role="button">
-                    Request
-                </div>
-        </div>
-    </div>
-    
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
+      </div>
     </div>
   </div>
 </div>

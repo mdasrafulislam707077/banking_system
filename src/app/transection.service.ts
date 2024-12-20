@@ -220,7 +220,7 @@ export class TransectionService {
       if (!err) {
         this.http
           .delete(
-            `http://localhost:8000/api/transection/paymentTokemGenerateDURDelete/${id}/`,
+            `${this.domain}/api/transection/paymentTokemGenerateDURDelete/${id}/`,
             this.getAccessHeader()
           )
           .subscribe(
@@ -249,7 +249,7 @@ export class TransectionService {
 
         this.http
           .post(
-            'http://localhost:8000/api/transection/PaymentTokemGenerate/',
+            `${this.domain}/api/transection/PaymentTokemGenerate/`,
             {
               email: this.useremail,
               username: this.username,
@@ -285,7 +285,7 @@ export class TransectionService {
     form['access'] = value;
     this.http
       .put(
-        `http://localhost:8000/api/transection/paymentTokemGenerateDUR/${id}/`,
+        `${this.domain}/api/transection/paymentTokemGenerateDUR/${id}/`,
         { ...form, email: this.useremail },
         {
           withCredentials: true,
@@ -310,7 +310,7 @@ export class TransectionService {
       if (!err) {
         this.http
           .delete(
-            `http://localhost:8000/api/transection/paymentTokemGenerateDUR/${id}/`,
+            `${this.domain}/api/transection/paymentTokemGenerateDUR/${id}/`,
             {
               withCredentials: true,
               headers: {
@@ -335,14 +335,14 @@ export class TransectionService {
   tokenReload(callback: any): void {
     const refToken = localStorage.getItem('auth_refresh');
     this.http
-      .post('http://127.0.0.1:8000/api/refresh/', {
+      .post(`${this.domain}/api/refresh/`, {
         refresh: refToken,
       })
       .subscribe(
         (data: any) => {
           localStorage.setItem('auth_access', data.access);
           this.http
-            .get('http://127.0.0.1:8000/api/getuser/', {
+            .get(`${this.domain}/api/getuser/`, {
               withCredentials: true,
               headers: {
                 Authorization: `Bearer ${data.access}`,
@@ -382,7 +382,7 @@ export class TransectionService {
         const accessToken = localStorage.getItem('auth_access');
         this.http
           .post(
-            'http://localhost:8000/api/transection/checkPin/',
+            `${this.domain}/api/transection/checkPin/`,
             {
               id: this.user_id,
               pin: pin,
@@ -416,7 +416,7 @@ export class TransectionService {
     if (this.user_id) {
       this.http
         .post(
-          'http://localhost:8000/api/transection/getUserAccountInfo/',
+          `${this.domain}/api/transection/getUserAccountInfo/`,
           {
             user_id: this.user_id,
           },
@@ -444,7 +444,27 @@ export class TransectionService {
   gettempToken(callback: any): any {
     const accessToken = localStorage.getItem('auth_access');
     this.http
-      .get('http://localhost:8000/api/transection/paymentTokemGenerateList/', {
+      .get(`${this.domain}/api/transection/paymentTokemGenerateList/`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .subscribe((data) => {
+        if (callback) {
+          callback(data);
+        }
+      });
+  }
+
+  getCardInfo(email:string,  callback: any):void{
+    if (!email) {
+      return 
+    }
+    const accessToken = localStorage.getItem('auth_access');
+
+    this.http
+      .get(`${this.domain}/api/transection/cardRequestProcess?email=${email}`, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${accessToken}`,
