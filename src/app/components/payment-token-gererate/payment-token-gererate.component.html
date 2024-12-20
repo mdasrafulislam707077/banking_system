@@ -1,0 +1,89 @@
+<div class="main">
+  <app-close-button (onClose)="closePopup()" />
+  <div class="logo-text">
+    <div class="logo">
+      <svg
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        viewBox="0 0 758.8 621.9"
+        style="enable-background: new 0 0 758.8 621.9"
+        xml:space="preserve"
+      >
+        <style type="text/css">
+          .st0 {
+            fill: black;
+          }
+        </style>
+        <path
+          id="Path_1_00000010993171036275141670000014577503859070789547_"
+          class="st0"
+          d="M0.9,251.4c0,0-2-40.7,30.4-104.7
+	C63.8,82.5,112.7,32.7,194,10s159.6,0.5,193.3,25.7c33.7,25.2,63.1,50.9,76.3,107c13.2,56.1,1.7,96,1.7,96s-6.7,21.4-11.5,29.7
+	c-4.7,8.2-9,16-9,16s-8,4,3.7,19.5c11.7,15.5,56.6,85.3,56.6,85.3l63.1,87c0,0,40.2,55.6,88,84c47.9,28.4,71.3,24.4,71.3,24.4h25.9
+	l4.2-1.7V615h-4.1v1.4h-4.2l0.6,2.2c0,0-11.5,5.1-62,0.9c-50.4-4.3-104-47.9-134.5-78.4c-30.5-30.5-69.5-81.7-99.8-128.4
+	c-30.3-46.7-34.1-51.9-34.1-51.9l-15.4-21.9l-4.2-8.2c0,0,0-5.2-6.4,1c-6.4,6.2-46.5,25.7-83.4,24.1c-36.9-1.6-65.2-7.2-90-36.1
+	c-24.7-28.9-20.2-52.1-20.9-88.4c-0.8-36.3,0-105.3,0-105.3h56.9l-0.2,107.5c0,0-8.8,66.8,28.3,82c37.1,15.2,77.6,8.4,105.3-38.7
+	c27.7-47.1,19-107.5,19-107.5s-6.6-92.4-90-123.3c-83.4-30.9-147.6,3-186.5,29.7c-38.9,26.7-79.6,92.2-79.6,92.2l-30.7,59.9
+	c0,0-6,11-11.4,16.8C5.1,250.2,0.9,251.4,0.9,251.4z"
+        />
+      </svg>
+    </div>
+    <div class="text">Payment-Token</div>
+
+    <div class="input-box">
+      <input
+        type="number"
+        name=""
+        id=""
+        placeholder="amount"
+        [(ngModel)]="amount"
+        min="0"
+      />
+    </div>
+    <div class="input-box"
+    
+    *ngIf="updateRole==false"
+    >
+
+      
+
+      <input
+     
+        type="text"
+        name=""
+        id=""
+        placeholder="token"
+        [(ngModel)]="token"
+       
+      />
+    </div>
+    <div class="input-box">
+      <select class="select-frame" [(ngModel)]="selectoption">
+        <option [value]="null" [selected]="selectoption == null">
+          Select a time span
+        </option>
+        <option
+          *ngFor="let item of selectItems"
+          [value]="item[1]"
+          [selected]="item[1] == selectoption"
+        >
+          {{ item[0] }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="error">
+    {{ errorMessage }}
+  </div>
+  <div class="generate" (click)="generate()">Generate</div>
+
+
+  <!-- <app-toast /> -->
+  <!-- <app-popup-frame [showPopup]="true" >
+    <app-invalid-message />
+  </app-popup-frame> -->
+</div>

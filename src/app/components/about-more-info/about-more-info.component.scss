@@ -1,0 +1,23 @@
+.main{
+    width: 1600px;
+    margin: auto;
+    .header{
+        font-size: 26px;
+        text-align: center;
+        font-weight: 900;
+        margin-bottom: 30px;
+    }
+    .items{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 1600px) {
+    .main {
+        width: 100%;
+    }
+  }
+  

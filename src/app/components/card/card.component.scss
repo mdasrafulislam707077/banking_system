@@ -1,0 +1,150 @@
+.card-item {
+  height: 350px;
+  width: 600px;
+  position: relative;
+  border-radius: 10px;
+  padding: 20px;
+  overflow: hidden;
+  .bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    img {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transform: scale(1.1);
+    }
+  }
+
+  .username-date {
+    position: relative;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    .date {
+    }
+    .typename {
+      font-size: 35px;
+    }
+  }
+  .card-name {
+    position: relative;
+    width: 100%;
+    text-align: end;
+    font-size: 30px;
+    font-weight: 900;
+  }
+  .pin {
+    position: relative;
+    font-weight: 900;
+    font-size: 18px;
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+  .number {
+    position: relative;
+    font-weight: 900;
+    font-size: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  .sim {
+    position: relative;
+    width: 100%;
+    padding: 10px 0;
+    .icon {
+      width: 100px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .logo-name {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    margin-top: 10px;
+    align-items: center;
+    .world {
+      width: 70px;
+      transform: translateX(-45%);
+    }
+    .logo-box {
+      height: fit-content;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      .logo {
+        height: 40px;
+        width: 40px;
+        transform: translateX(5px);
+      }
+      .name {
+        font-size: 20px;
+        transform: translateY(-5px);
+        font-weight: 200;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .card-item  {
+    width: 400px;
+    height: 250px;
+    .card-name{
+      font-size: 20px;
+    }
+    .pin {
+      font-size: 13px;
+    }
+    .number {
+      font-size: 13px;
+    }
+    .sim { padding: 0;
+      .icon {
+       
+        width: 80px;
+       
+      }
+    }
+    .world {
+      width: 30px;
+      transform: translateX(-45%);
+      
+    }
+    .logo-name {
+      .logo-box{
+        .logo{
+          height: 20px;
+          width: 20px;
+        }
+        .name{
+          font-size: 17px;
+        }
+      }
+     
+    }
+    .username-date{
+      font-size: 17px;
+      margin-top: 0;
+      .typename {
+        font-size: 25px;
+      }
+    }
+  }
+}

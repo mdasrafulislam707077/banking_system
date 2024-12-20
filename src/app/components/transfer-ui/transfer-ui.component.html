@@ -1,0 +1,99 @@
+<div class="main">
+  <div class="item">
+    <div class="header">Transfer</div>
+    <br>
+    <div class="bal">Balance-{{ balAmount }}$</div>
+    <div class="input-box">
+      <select name="" id="">
+        <option value="">Q-Bank</option>
+        <option value="">Trade Lock</option>
+      </select>
+      <div class="input-error">{{ errorItems.amount }}</div>
+    </div>
+    <div class="input-box">
+      <input
+        type="number"
+        name=""
+        min="0"
+        placeholder="amount"
+        id=""
+        [(ngModel)]="amount"
+      />
+      <div class="input-error">{{ errorItems.amount }}</div>
+    </div>
+    <div class="input-box">
+      <input
+        type="text"
+        name=""
+        placeholder="payment-address"
+        id=""
+        [(ngModel)]="address"
+      />
+      <div class="input-error">{{ errorItems.address }}</div>
+    </div>
+    <div class="input-box">
+      <input type="text" name="" placeholder="pin" id="" [(ngModel)]="pin" />
+      <div class="input-error">{{ errorItems.pin }}</div>
+    </div>
+    <div class="input-box">
+      <input
+        type="password"
+        name=""
+        placeholder="password"
+        id=""
+        [(ngModel)]="pass"
+      />
+      <div class="input-error">{{ errorItems.password }}</div>
+    </div>
+    <div class="error">
+      {{ commonError }}
+    </div>
+    <div class="input-box button">
+      <input
+        type="button"
+        name=""
+        value="Transfer"
+        id=""
+        (click)="onSubmit()"
+      />
+    </div>
+  </div>
+  <div class="item">
+    <div class="master-header">Transfer VAT Rules</div>
+    <p class="des">
+      Our bank offers personalized VAT rates based on the type of account you
+      hold. Below are the VAT rules applicable to personal and business
+      accounts.
+    </p>
+    <section class="point">
+      <div class="point-header">Personal Account VAT Rates:</div>
+      <div class="point-item">
+        <ol>
+          <li>Under $1,000: 5% VAT</li>
+          <li>$1,000 to $5,000: 3% VAT</li>
+          <li>Above $5,000: 1.5% VAT</li>
+        </ol>
+      </div>
+    </section>
+    <section class="point">
+      <div class="point-header">Business Account VAT Rates:</div>
+      <div class="point-item">
+        <ol>
+          <li>
+            No VAT charges: Business accounts enjoy full exemption from VAT.
+          </li>
+          <li>
+            Free transactions: All transactions within business accounts are
+            free of VAT, providing cost-efficiency for business operations.
+          </li>
+        </ol>
+      </div>
+    </section>
+  </div>
+  <app-toast [showtoast]="showtoast" (onClose)="autoCloseToast()">
+    <app-toast-simple-message
+      [messageHeader]="'Transaction Success '"
+      [message]="message"
+    />
+  </app-toast>
+</div>

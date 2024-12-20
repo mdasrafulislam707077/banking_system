@@ -1,0 +1,68 @@
+.main {
+  width: 550px;
+  height: auto;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  padding-bottom: 50px;
+  .cross {
+    z-index: 11;
+    background-color: red;
+  }
+  .logo-text {
+    margin: auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      position: relative;
+    }
+    .text {
+      font-size: 22px;
+      margin: auto;
+      text-align: center;
+      font-weight: 900;
+      width: 100%;
+      white-space: nowrap;
+      margin-bottom: 40px;
+    }
+  }
+
+  .display-item {
+    width: 80%;
+    height: 40px;
+    margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    .key {
+      font-weight: 900;
+    }
+  }
+
+  .generate {
+    height: 40px;
+    width: 500px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 900;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 40px;
+    cursor: pointer;
+  }
+  .error {
+    font-size: 14px;
+    color: red;
+    font-weight: 900;
+    text-align: center;
+  }
+}

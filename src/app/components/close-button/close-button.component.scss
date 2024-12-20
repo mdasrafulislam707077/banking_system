@@ -1,0 +1,12 @@
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  .close-button{
+    font-weight: 900;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transform: rotate(45deg);
+    font-size: 30px;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,239 @@
+<div class="main">
+  <div class="part">
+    <div class="logo-box">
+      <div class="logo">
+        <img src="./../../../assets/logo/logo.svg" alt="" />
+      </div>
+      <div class="text">Q-Bank</div>
+    </div>
+  </div>
+  <div class="part">
+    <div class="item">
+      <div class="sub-item">
+        <div class="icon">
+          <img src="../../../assets/icon/email-svgrepo-com.svg" alt="" />
+        </div>
+        <div class="text-content">
+          {{ "info@gmail.com" }}
+        </div>
+      </div>
+
+      <div class="sub-item">
+        <div class="icon">
+          <img src="../../../assets/icon/call-ringing-svgrepo-com.svg" alt="" />
+        </div>
+        <div class="text-content">+8801913666282</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="sub-item">
+        <div class="nav">
+          <a routerLink="">Home</a>
+          <!-- <div class="arrow"></div> -->
+        </div>
+
+        <div class="nav">
+          <a routerLink="/about">About</a>
+          <!-- <div class="arrow"></div> -->
+        </div>
+
+        <div class="nav">
+          <a routerLink="/service">Service</a>
+          <!-- <div class="arrow"></div> -->
+        </div>
+
+        <div class="nav" *ngIf="isAuth">
+          <a routerLink="google">Career</a>
+          <div class="arrow"></div>
+
+          <div class="sub-link">
+            <div class="sub-link-item">
+              <a routerLink="career/saving"> Saving-Career </a>
+            </div>
+
+            <div class="sub-link-item">
+              <a routerLink="career/card"> Transection-Card </a>
+            </div>
+          </div>
+        </div>
+        <div class="nav" *ngIf="isAuth">
+          <a routerLink="/transection">Transection</a>
+          <!-- <div class="arrow"></div> -->
+        </div>
+        <div class="nav">
+          <a routerLink="/contact">Contact</a>
+          <!-- <div class="arrow"></div> -->
+        </div>
+      </div>
+      <div class="sub-item option-button">
+        <div
+          class="button login"
+          *ngIf="!username"
+          (click)="activePopup('login')"
+        >
+          Login
+        </div>
+        <div class="button login" *ngIf="username" (click)="signOut()">
+          Signout
+        </div>
+        <div class="button login" *ngIf="username">My-Account</div>
+        <div
+          class="button account-create"
+          *ngIf="!username"
+          (click)="activePopup('create')"
+        >
+          account-create
+        </div>
+      </div>
+      <div class="menu" (click)="changeNavActiveStatus()">
+        <img src="../../../assets//icon/noun-menu-5976962.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <app-popup-frame [showPopup]="showpopup">
+    <app-toast [showtoast]="showtoast" (onClose)="closeToast()">
+      <app-toast-simple-message
+        [messageHeader]="toastHeader"
+        [message]="toastMessage"
+        toastType="success"
+      />
+    </app-toast>
+    <app-login-card
+      (successLogin)="success('login')"
+      *ngIf="popupType == 'login'"
+      (onClose)="hidePopup()"
+      (changeToCreate)="swtToCreate()"
+    />
+    <app-usercreate-card
+      *ngIf="popupType == 'create'"
+      (onClose)="hidePopup()"
+      (swtToSignin)="swtToSignin()"
+      (createSuccess)="success('create')"
+    />
+  </app-popup-frame>
+  <app-toast
+    [showtoast]="showtoast"
+    *ngIf="toastType == 'signout'"
+    (onClose)="closeToast()"
+  >
+    <app-toast-simple-message
+      [messageHeader]="toastHeader"
+      [message]="toastMessage"
+      toastType="success"
+    />
+  </app-toast>
+  <div class="mobile-nav" [active]="activeNav" appActiveMobileNav>
+    <div class="icon-box">
+      <div class="icon">
+        <img src="../../../assets/logo/logo.svg" alt="" />
+      </div>
+      <div class="txt">- Bank</div>
+      <div class="cross" (click)="changeNavActiveStatus()">
+        <img src="../../../assets/icon/noun-cross-1070424 (1).svg" alt="" />
+      </div>
+    </div>
+
+    <div class="link-box">
+      <div class="name">menu</div>
+      <div class="nav-box">
+        <div class="item">
+          <div class="icon">
+            <img src="../../../assets/icon/noun-home-6931121.svg" alt="" />
+          </div>
+          <div class="txt">Home</div>
+        </div>
+
+        <div class="item">
+          <div class="icon">
+            <img src="../../../assets/icon/noun-about-6156362.svg" alt="" />
+          </div>
+          <div class="txt">About</div>
+        </div>
+
+        <div class="item">
+          <div class="icon">
+            <img src="../../../assets/icon/noun-service-6912985.svg" alt="" />
+          </div>
+          <div class="txt">Service</div>
+        </div>
+
+        <div class="item item-l" *ngIf="isAuth">
+          <div class="l-item">
+            <div class="icon">
+              <img src="../../../assets/icon/noun-career-6777341.svg" alt="" />
+            </div>
+            <div class="txt">Career</div>
+          </div>
+          <div class="sub-link">
+            <a routerLink="career/saving" class="link"
+              ><div class="icon">
+                <img
+                  src="../../../assets/icon/call-ringing-svgrepo-com.svg"
+                  alt=""
+                />
+              </div>
+              <div class="txt">Saving-Career</div></a
+            >
+            <a routerLink="career/card" class="link"
+              ><div class="icon">
+                <img
+                  src="../../../assets/icon/call-ringing-svgrepo-com.svg"
+                  alt=""
+                />
+              </div>
+              <div class="txt">Transection-Card</div></a
+            >
+          </div>
+        </div>
+
+        <div class="item" *ngIf="isAuth">
+          <div class="icon">
+            <img
+              src="../../../assets/icon/noun-online-money-conversion-2766009 (1).svg"
+              alt=""
+            />
+          </div>
+          <div class="txt">Transection</div>
+        </div>
+
+        <div class="item">
+          <div class="icon">
+            <img src="../../../assets/icon/noun-contact-6609927.svg" alt="" />
+          </div>
+          <div class="txt">Contact</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="extra-button">
+      <a class="item" *ngIf="!username" (click)="activePopup('login')">
+        <div class="icon">
+          <img src="../../../assets/icon/noun-login-1628637.svg" alt="" />
+        </div>
+        <div class="link">Signin</div>
+      </a>
+
+      <a class="item" *ngIf="!username" (click)="activePopup('create')">
+        <div class="icon">
+          <img src="../../../assets/icon/noun-register-4915664.svg" alt="" />
+        </div>
+        <div class="link">Register</div>
+      </a>
+
+      <a class="item" *ngIf="username" (click)="signOut()">
+        <div class="icon signout">
+          <img src="../../../assets/icon/noun-login-1628637.svg" alt="" />
+        </div>
+        <div class="link">Signout</div>
+      </a>
+
+      <a class="item" *ngIf="username">
+        <div class="icon account">
+          <img src="../../../assets/icon/noun-user-4974695.svg" alt="" />
+        </div>
+        <div class="link">Account</div>
+      </a>
+    </div>
+  </div>
+</div>

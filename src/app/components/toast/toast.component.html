@@ -1,0 +1,22 @@
+<div
+  [class]="'main c'"
+  *ngIf="showtoast"
+  [style]="{
+     
+      transform:(transition=='scaleY'|| transition=='scaleX' )?'scaleY(1) scaleX(1)':'scaleY(1) scaleX(.01)',
+     
+  }"
+>
+  <div class="close-button">
+    <div class="button" (click)="closeToast()">+</div>
+  </div>
+
+  <div
+    class="w"
+    [style]="{
+      opacity: transition == 'scaleX' ? '1' : '0'
+    }"
+  >
+    <ng-content />
+  </div>
+</div>

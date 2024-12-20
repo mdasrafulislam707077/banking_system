@@ -1,0 +1,11 @@
+./test
+test
+.angular
+bank_frontend
+/node_modules
+./server/Include
+./server/Lib
+./server/Scripts
+server/Include
+server/Lib
+server/Scripts

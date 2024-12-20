@@ -1,0 +1,108 @@
+.main {
+  height: 900px;
+  width: 100%;
+
+  margin-bottom: 50px;
+  .slider {
+    height: 100%;
+    width: auto;
+    .single-frame {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      .text-context {
+        width: 50%;
+        height: 90%;
+        padding: 50px;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .header {
+          font-size: 50px;
+          margin-bottom: 20px;
+          color: white;
+          text-align: center;
+        }
+        .context {
+          font-size: 23px;
+          color: rgb(188, 188, 188);
+          text-align: center;
+        }
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .main {
+    .slider {
+      .single-frame {
+        .text-context {
+          width: 70%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .main {
+    height: 700px;
+    .slider {
+      .single-frame {
+        .text-context {
+          width: 80%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .main {
+    height: 500px;
+    .slider {
+      .single-frame {
+        .text-context {
+            padding: 20px;
+          width: 80%;
+          .header {
+            font-size: 25px;
+          }
+          .context {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    .main {
+      height: 500px;
+      .slider {
+        .single-frame {
+          .text-context {
+              padding: 10px;
+            width: 90%;
+            .header {
+              font-size: 22px;
+            }
+            .context {
+              font-size: 17px;
+            }
+          }
+        }
+      }
+    }
+  }

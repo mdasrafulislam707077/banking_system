@@ -1,0 +1,133 @@
+<div class="main">
+  <div class="header">Transaction Process</div>
+  <div class="option">
+    <div class="item">
+      <div class="header">Money Transfer</div>
+      <div class="transfer-mathod">
+        <div class="mathod-item">
+          <div class="header">
+
+            <div>Transfer</div>
+            <div class="button" role="button" (click)="activePopup('addressTokenGenerate')">Generate</div>
+          </div>
+
+          <div class="list-of-token">
+
+
+
+            <div class="item-of-token" *ngFor="let item of list_of_Addresstoken; let a = index" >
+              <div class="no">{{a+1}}</div>
+              <div class="token">
+                {{
+                 item.token
+                }}
+              </div>
+              <div class="copy" (click)="activePopup('addressTokenCopy',item.token)">
+                <img src="../../../assets/icon/copy-svgrepo-com.svg" alt="" />
+              </div>
+              <div class="delete" (click)="activePopup('addressTokenDelete',item)" >+</div>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+
+        <div class="mathod-item">
+          <div class="header">
+            
+            
+            <div>Auto-pay</div>
+            <div class="button" role="button" (click)="activePopup('autoPayTokenGenerate')">Add-User</div>
+          </div>
+
+          <div class="list-of-token">
+            <div class="item-of-token" *ngFor="let item of list_of_AutoAddresstoken" >
+              <div class="no">{{item.id}}</div>
+              <div class="token">
+                {{
+                  item.token
+                }}
+              </div>
+              <div class="copy" (click)="activePopup('autoPayTokenView',item)">
+                <img src="../../../assets/icon/view-svgrepo-com.svg" alt="" />
+              </div>
+              <div class="copy" (click)="activePopup('autoPayTokenEdit',item)">
+                <img src="../../../assets/icon/edit-3-svgrepo-com.svg" alt="" />
+              </div>
+              <div class="delete" (click)="activePopup('autoPayTokenDelete',item)">+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="header">Payment By Token</div>
+      <div class="button-box">
+        <div class="button" role="button"  (click)="activePopup('tempTokenGenerate')">Generate</div>
+      </div>
+      <div class="token-box">
+        <div class="card" *ngFor="let item of list_of_token" >
+         
+          <div class="icon">
+            <div class="image">
+              <img src="../../../assets/icon/token-svgrepo-com.svg" alt="" />
+            </div>
+          </div>
+
+          <div class="text-context">
+            <div class="copy-box">
+              <div class="icon" (click)="activePopup('tempTokenCopy',item)">
+                <img src="../../../assets/icon/copy-svgrepo-com.svg" alt="" />
+              </div>
+              <div class="icon" (click)="activePopup('tempTokenEdit',item)">
+                <img src="../../../assets/icon/edit-3-svgrepo-com.svg" alt="" />
+              </div>
+              <div class="icon" (click)="activePopup('tempTokenDelete',item)">
+                <img
+                  src="../../../assets/icon/delete-3-svgrepo-com.svg"
+                  alt=""
+                />
+              </div>
+            </div>
+
+            <div class="token">
+              Token : {{ item?.token }}
+            </div>
+            
+            <div class="limite">API-name : {{item.api_name}}</div>
+            <div class="limite">Token-user : {{item.token_user}}</div>
+            <div class="limite">Limite : {{item.limite}}$</div>
+            <div class="access" *ngIf="item.access" >Access : enable </div>
+            <div class="access" *ngIf="!item.access" >Access : disabled</div>
+            <div class="exp">Exp-Date : {{getExpTime(item.create_timespan ,item.exp_date)}}</div>
+            <div class="create-time">Create-time : {{getExpTime(item.create_timespan)}}</div>
+            <div class="swt-box">
+              <div class="swt" (click)="activePopup('tempTokenAccessStatus',item)">
+                <div class="bar" *ngIf="item.access" [style]="{left: 'calc(100% - 25px)'}"></div>
+                <div class="bar" *ngIf="!item.access" [style]="{left: '0'}"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-toast [showtoast]="isactiveToast" (onClose)="toasthide()" >
+
+    <app-toast-simple-message messageHeader="Success" message="Token copy successfully" />
+  </app-toast>
+  <app-popup-frame [showPopup]="isactivePopup">
+    
+    <app-payment-token-gererate *ngIf="cardType=='tempTokenGenerate' && isAccountSecure && !isActivePinCard"  (getToken)="onCollectToken($event)" (onClose)="closePopup()" />
+    <app-pin-card  *ngIf="(cardType=='tempTokenDelete'|| cardType=='tempTokenCopy'||cardType=='autoPayTokenView' ||cardType=='tempTokenGenerate' ||cardType=='autoPayTokenEdit' || 'autoPayTokenDelete' ==cardType || 'addressTokenDelete' ==cardType || 'autoPayTokenGenerate' ==cardType || cardType=='tempTokenEdit'|| 'addressTokenCopy'== cardType || 'tempTokenAccessStatus'==cardType || 'addressTokenGenerate' == cardType)&& isAccountSecure && isActivePinCard" (onClose)="closePopup()" (submitForm)="pinSubmit()" />
+    <app-autopay-genarator-card-edit [id]="tokenCardInfo.id" (onUpdate)="updateAutoToken($event)" *ngIf="cardType=='autoPayTokenEdit' && isAccountSecure && !isActivePinCard"/>
+    <app-invalid-message *ngIf="!isAccountSecure " (onClose)="closePopup()" header="Insecure Account" buttonName="verify now" message="Your account must be secured to initiate the transaction process" />
+    <app-autopay-genarator-card (createdata)="createAutoToken($event)"  *ngIf="cardType=='autoPayTokenGenerate' && isAccountSecure && !isActivePinCard" (onClose)="closePopup()" />
+    <app-payment-token-gererate [id]="tokenCardInfo.id" [updateRole]="true" *ngIf="cardType=='tempTokenEdit' && isAccountSecure && !isActivePinCard"  (getToken)="onCollectToken($event)" (onClose)="closePopup()"  (updateValue)="updateTokenValue($event)" />
+    <app-auto-pay-token-display [name]="tokenCardInfo.name" [token]="tokenCardInfo.token" [order]="tokenCardInfo.lvl_order" [amount]="tokenCardInfo.amount" *ngIf="cardType=='autoPayTokenView' && isAccountSecure && !isActivePinCard " (onClose)="closePopup()" />
+  </app-popup-frame>
+</div>
+<!-- lvl_order -->

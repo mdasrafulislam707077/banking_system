@@ -1,0 +1,27 @@
+.main{
+    margin: auto;
+    width: 1600px;
+   
+    padding-bottom: 50px;
+    .header{
+        font-size: 35px;
+        font-weight: 900;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .item{
+        margin-bottom: 50px;
+        padding-top: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+}
+
+
+@media only screen and (max-width: 1600px) {
+    .main {
+        width: 100%;
+    }
+  }

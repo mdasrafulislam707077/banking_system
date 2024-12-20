@@ -1,0 +1,17 @@
+<div class="main">
+  <app-close-button (onClose)="closePopup()" />
+
+  <div class="icon">
+    <img src="../../../assets/icon/pin-code-svgrepo-com.svg" alt="" />
+  </div>
+  <div class="header">You Pin</div>
+
+  <div class="des">
+    <input type="text" name="" id="" [(ngModel)]="pin" placeholder="your-pin" />
+  </div>
+  <br>
+  <div class="error"> {{errorMessage}} </div>
+  <div class="button-box">
+    <div class="button" role="button" (click)="submit()">Submit</div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<div class="main">
+  <div class="item">
+    <div class="frame">
+      <div class="top-arrow"><div class="arrow" (click)="stapUP()"></div></div>
+      <div class="bottom-arrow">
+        <div class="arrow" (click)="stapDown()"></div>
+      </div>
+
+      <div
+        #slider
+        [ngStyle]="{
+          transform:
+            'translateY(' +
+            (totalHeight / totalContainerCard) * currentIndex +
+            'px)',
+          transition: this.transition ? '.2s' : 'none'
+        }"
+        class="slider"
+        *ngIf="
+          items != null &&
+          itemlength != 0 &&
+          itemlength % 2 != 0 &&
+          itemlength != 1
+        "
+      >
+        <app-profile-card text="2" *ngFor="let item of beforeItems" />
+        <app-profile-card
+          [text]="index.toString()"
+          *ngFor="let item of items; let index = index"
+        />
+        <app-profile-card text="2" *ngFor="let item of afterItems" />
+      </div>
+
+      <div
+        #slider
+        [ngStyle]="{
+          transform:
+            'translateY(' +
+            (totalHeight / totalContainerCard) * currentIndex +
+            'px)',
+          transition: this.transition ? '.2s' : 'none'
+        }"
+        class="slider"
+        *ngIf="
+          items != null &&
+          itemlength != 0 &&
+          itemlength % 2 == 0 &&
+          itemlength != 1
+        "
+      >
+        <app-profile-card #cardSide text="2" *ngFor="let item of beforeItems" />
+        <app-profile-card
+          [text]="index.toString()"
+          *ngFor="let item of items; let index = index"
+        />
+        <app-profile-card text="2" *ngFor="let item of afterItems" />
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="header">Our Esteemed Clients</div>
+    <div class="des">
+      At Q-Bank, we take pride in serving a diverse and distinguished clientele,
+      including some of the most respected public figures across various fields.
+      We are honored to support these exceptional individuals as they continue
+      to achieve remarkable success. Our commitment to providing outstanding
+      financial services has earned the trust and loyalty of these notable
+      clients, whose stories we are excited to share with you. Explore their
+      profiles to learn more about their journeys and experiences with Q-Bank.
+    </div>
+    <div class="big-header">Why Join Q-BANK ?</div>
+    <div class="point-box">
+      <div class="point-item">
+        <div class="point-header">Trusted by Influential Figures:</div>
+        <div class="point-des">
+          Our bank is the trusted choice of numerous influential public figures
+          and industry leaders. Their continued association with us reflects our
+          long-standing reputation for reliability, excellence, and personalized
+          service. By joining Q-BANK, you align yourself with a
+          financial institution respected by successful individuals, ensuring
+          you receive the same level of trust and reliability that has attracted
+          these distinguished clients.
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-header">Personalized Financial Solutions:</div>
+        <div class="point-des">
+          At Q-BANK, we understand that every customer has unique financial
+          needs and goals. We offer personalized financial solutions tailored
+          specifically to you. Our expert advisors work closely with you to
+          develop customized plans that align with your objectives. Experience a
+          banking relationship where your individual needs are our top priority,
+          ensuring you receive the best possible support and guidance.
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-header">Trusted by Influential Figures:</div>
+        <div class="point-des">
+          Exceptional customer service is at the heart of Q-BANK. Our
+          dedicated team provides personalized, prompt, and attentive service to
+          ensure your banking experience is smooth and hassle-free. We listen to
+          your needs and offer expert advice, going the extra mile to exceed
+          your expectations. Experience the difference with a bank that truly
+          values its customers. Our bank is the trusted choice of numerous
+          influential public figures and industry leaders. Their continued
+          association with us reflects our long-standing reputation for
+          reliability, excellence, and personalized service. By joining [Your
+          Bank Name], you align yourself with a financial institution respected
+          by successful individuals, ensuring you receive the same level of
+          trust and reliability that has attracted these distinguished clients.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

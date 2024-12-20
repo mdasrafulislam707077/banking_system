@@ -1,0 +1,93 @@
+:host{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dialog {
+    width: 550px;
+    height: 600px;
+    background-color: white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 20px;
+    color: black;
+   
+    .brand-box {
+      margin: auto;
+      position: relative;
+      width: 100px;
+      
+      .logo {
+        width: 100%;
+      }
+      .text {
+        font-size: 26px;
+        color: black;
+        font-weight: 900;
+        margin-top: 20px;
+      }
+    }
+    .form{
+        width: 100%;
+        padding: 30px;
+        .error{
+          width: 100%;
+          text-align: center;
+      
+          color: red;
+          font-weight: 900;
+          font-size: 12px;
+        }
+        .input-box{
+            width: 100%;
+            height: 40px;
+            background-color: aliceblue;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+            input{
+                height: 100%;
+                width: 100%;
+                background-color: transparent;
+                border: none;
+                outline: none;
+            }
+        }
+        .create-link{
+          width: 100%;
+          text-align: center;
+          color: black;
+          cursor: pointer;
+          margin-top: 20px;
+
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+        .button-box{
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 45px;
+          color: white;
+          background-color: black;
+          font-weight: 900;
+          border-radius: 5px;
+          margin-top: 20px;
+          cursor: pointer;
+        }
+    }
+  }
+
+
+  @media only screen and (max-width: 600px) {
+    .dialog {
+      width: 98%;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+  
