@@ -5,14 +5,6 @@ from .models import CardRequestBoard
 from datetime import datetime; 
 from dateutil.relativedelta import relativedelta;
 class  CardRequestSerializer(serializers.Serializer):
-        #  api_name = serializers.CharField(max_length=255)
-        #  api_key = serializers.CharField(max_length=255)
-        #  domain =  serializers.CharField(max_length=255)
-        #  create_time = serializers.DateField() 
-
-    
-
-
     email = serializers.CharField(max_length=255)
     card_lvl = serializers.CharField(max_length=555)
     def validate(self, data):

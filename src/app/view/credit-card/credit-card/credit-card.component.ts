@@ -23,6 +23,22 @@ export class CreditCardComponent implements OnInit {
     private routes: Router,
     private traS: TransectionService
   ) {}
+  requestCard(cardType: string): void {
+    this.traS.cardRequest(
+      { cardType: cardType, email: this.useremail },
+      (cl: any) => {
+        if (cl?.data?.author_id) {
+          if (cl.data.card_lvl == 'GOLD') {
+            this.goldCard = cl.data;
+          } else if (cl.data.card_lvl == 'SILVER') {
+            this.silverCard = cl.data;
+          } else if (cl.data.card_lvl == 'PLATINUM') {
+            this.platinumCard = cl.data;
+          }
+        }
+      }
+    );
+  }
   ngOnInit(): void {
     this.authService.checkAuth((err: any) => {
       this.store.select('userinfo').subscribe((data) => {
@@ -39,17 +55,10 @@ export class CreditCardComponent implements OnInit {
         this.traS.getUserAccountInfo();
         this.traS.getCardInfo(this.useremail, (data: any) => {
           data?.card_items_info?.forEach((element: any) => {
-            console.log(element)
-            // goldCard?.card_num
-            // goldCard?.cvv
-            // goldCard?.exp_date
-            // goldCard?.card_type
-            // goldCard?.card_type
-            // goldCard?.card_type 
             if (element.card_lvl == 'GOLD') {
               this.goldCard = element;
             }
-            
+
             if (element.card_lvl == 'SILVER') {
               this.silverCard = element;
             }

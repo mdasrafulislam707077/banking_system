@@ -1,7 +1,7 @@
 
 from django.urls import path
-from .views import CraditCardProcess, PaymentTokenDUR,PaymentTokenGetPost, GetTokenApiTransection,CAutoPayToken,Transfar,AddPaymentToken ,GetPaymentTokenTransection,CheckValidPin,PaymentAddressGenerate,GetAccountInfo,UserAccountInfoDUR,GetAutoPayToken,AutoPayDUR,PaymentAddressGet,PaymentAddressDURDelete
-
+from .views import CraditCardProcess, PaymentTokenDUR,PaymentTokenGetPost, ApiPaymentService,GetTokenApiTransection,CAutoPayToken,Transfar,AddPaymentToken ,GetPaymentTokenTransection,CheckValidPin,PaymentAddressGenerate,GetAccountInfo,UserAccountInfoDUR,GetAutoPayToken,AutoPayDUR,PaymentAddressGet,PaymentAddressDURDelete
+# GetPaymentTokenTransection
 urlpatterns = [
     path("getApiPaymentToken/",GetTokenApiTransection.as_view()),
     path("paymentTokemGenerate/",GetPaymentTokenTransection.as_view()),
@@ -97,6 +97,9 @@ urlpatterns = [
 
 
     path("cardRequestProcess",CraditCardProcess.as_view()),
+    path("apiPaymentService",ApiPaymentService.as_view()),
+
+
 
 
 

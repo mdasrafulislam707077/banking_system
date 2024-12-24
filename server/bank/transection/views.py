@@ -20,6 +20,7 @@ from .addpaymentToken import AddPaymentTokenClient
 from .card_request_Serializer import CardRequestSerializer
 from .models import CardRequestBoard
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from .paymentServiceSerializer import APIPaymentServiceSerializer
 class PaymentTokenGetPost(GenericAPIView,ListModelMixin):
     permission_classes = [IsAuthenticated]
     queryset = TransferTempToken.objects.all()
@@ -364,7 +365,7 @@ class CAutoPayToken(APIView):
 
         return Response(errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+# AccountPaymentTokenGeneratorSerializer
 
 class  AutoPayDUR(GenericAPIView,UpdateModelMixin,DestroyModelMixin):
     queryset = AutoPay.objects.all()
@@ -441,7 +442,7 @@ class PaymentAddressGet(APIView):
                 })
         return Response(listOfUser, status=status.HTTP_200_OK)
 
-
+# AccountPaymentTokenGeneratorSerializer
 
 class PaymentAddressGenerate(APIView):
     def post(self, req, *arg, **KMoreA):
@@ -495,6 +496,7 @@ class  PaymentAddressDURDelete(GenericAPIView,DestroyModelMixin):
 class GetTokenApiTransection(APIView):
     def post(self, request, *args, **kwargs):
         result  = PaymentTokenGenerateSerializer(data=request.data)
+        # print(result.is_valid())
         if result.is_valid():
             pack = {}
             pack["email"] = result.validated_data["email"]
@@ -503,6 +505,7 @@ class GetTokenApiTransection(APIView):
             return Response({ "token":  encrypted_data},status=status.HTTP_200_OK)
         errors = {}
         for field, messages in result.errors.items():
+                print(messages[0])
                 errors[field] = messages[0]
         return Response(errors,status=status.HTTP_400_BAD_REQUEST)
     
@@ -565,13 +568,22 @@ class CraditCardProcess(APIView):
             if resultD["failed_status"]:
                 return Response({}, status=status.HTTP_400_BAD_REQUEST)
             else:
-                return Response({}, status=status.HTTP_102_PROCESSING)
+                return Response({"data":resultD}, status=status.HTTP_200_OK)
         return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
     
 
 
+class ApiPaymentService(APIView):
+    def post(self,request, *args, **kwargs):
+        result  = APIPaymentServiceSerializer(data=request.data)
+        if result.is_valid():
+            return Response({}, status=status.HTTP_200_OK)
+        errors = {}
+        for  field, messages in result.errors.items():
+            errors[field] = messages[0]
 
+        return Response({"errors":errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
 

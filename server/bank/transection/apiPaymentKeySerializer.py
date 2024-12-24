@@ -6,6 +6,8 @@ from django.conf import settings
 import  time
 import uuid
 import json
+from datetime import datetime
+
 class PaymentTokenGenerateSerializer(serializers.Serializer):
         api_name = serializers.CharField(max_length=255)
         client_email = serializers.CharField(max_length=255)
@@ -63,14 +65,16 @@ class AccountPaymentTokenGeneratorSerializer(serializers.Serializer):
                   
                   try:  
                         
-                        user = CustomUser.objects.get(email=token["email"])
-                     
-                        makeToken = json.dumps({
+                        user = CustomUser.objects.get(email=data.get('email'))
+
+                        current_timestamp = int(datetime.now().timestamp() * 1000)
+                        makeToken = json.dumps({    
                              "client_email":token["email"],
                              "api_name":token["api_name"],
                              "q_account_email":data.get('email'),
-                             "exp_date":str(data.get('exp_date')),
-                             "limite":data.get('limite')
+                             "exp_date":  str(data.get('exp_date')),
+                             "limite":data.get('limite'),
+                             "create_time":current_timestamp
                         })
                         
                         create_token = encrypt(makeToken,settings.SECRET_KEY)
@@ -84,8 +88,8 @@ class AccountPaymentTokenGeneratorSerializer(serializers.Serializer):
                              used = 0,
                              exp_date_used =0,
                              api_name = token["api_name"],
-                             author_id =user.id, 
-                             create_timespan = int(time.time()*1000)
+                             author_id = user.id, 
+                             create_timespan = current_timestamp
                         )
                         result.save()
                         return {

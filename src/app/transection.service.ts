@@ -457,9 +457,9 @@ export class TransectionService {
       });
   }
 
-  getCardInfo(email:string,  callback: any):void{
+  getCardInfo(email: string, callback: any): void {
     if (!email) {
-      return 
+      return;
     }
     const accessToken = localStorage.getItem('auth_access');
 
@@ -475,5 +475,31 @@ export class TransectionService {
           callback(data);
         }
       });
+  }
+
+  cardRequest(info: any, callback: any): void {
+    const accessToken = localStorage.getItem('auth_access');
+    this.http.post(
+      `${this.domain}/api/transection/cardRequestProcess`,
+      {
+        email: info.email, // "asraful1@gmail.com"
+        card_lvl: info.cardType, // "GOLD"
+      },
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    ).subscribe((res) => {
+      if (callback) {
+        callback(res)
+      }
+    },
+    (error) => {
+      if (callback) {
+        callback(error)
+      }
+    });
   }
 }
