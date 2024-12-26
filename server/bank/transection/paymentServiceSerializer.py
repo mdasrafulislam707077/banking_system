@@ -27,7 +27,8 @@ class APIPaymentServiceSerializer(serializers.Serializer):
         tempTokenInfo = None
         try:
             tempTokenInfo =  TransferTempToken.objects.get(token=data.get("token"))
-        except:
+        except Exception as a:
+            print(a)
             raise serializers.ValidationError({"token_issue":"Your token is invalid."})
         if not tempTokenInfo.access:
             raise serializers.ValidationError({"access_denied":"Your token is valid but does not have the necessary access permissions"})
